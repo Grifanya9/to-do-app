@@ -52,15 +52,20 @@ svg {
     justify-content: space-between;
 }
 
+.todo-item.complete p {
+    text-decoration: line-through;
+}
+
+.todo-item img {
+    width: 24px;
+    height: 24px;
+}
+
 .todo-item span {
     flex-grow: 1;
     margin-left: 10px;
     margin-right: 10px;
     font-size: 22px;
-}
-
-.done span {
-    text-decoration: line-through;
 }
 
 input[type="checkbox"] {
