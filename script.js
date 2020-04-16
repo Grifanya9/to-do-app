@@ -1,5 +1,5 @@
 const input = document.getElementById("input");
-const list = document.querySelector(".todo-list");
+const list = document.querySelector(".list");
 
 function addToDo(toDo) {
     var item = `
@@ -23,16 +23,16 @@ document.addEventListener("keyup",function(evt){
 });
 
 document.addEventListener("click", function(evt){
-    const element = evt.target.closest(".todo-item");
-    if (element) {
-        element.classList.toggle("complete");
+    const todoEl = evt.target.closest(".item");
+    if (todoEl) {
+        todoEl.classList.toggle("complete");
     }
 });
 
 document.addEventListener("click", function(evt){
-  const todoRemoveEl = evt.target.closest(".todo-item");
+  const todoRemoveEl = evt.target.closest(".delete");
   if(todoRemoveEl){
-      const todoEl = evt.target.closest(".todo-delete");
+      const todoEl = evt.target.closest(".item");
       todoEl.remove();
   }
 });

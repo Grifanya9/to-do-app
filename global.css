@@ -34,12 +34,12 @@ body {
     opacity: 0.5;
 }
 
-.todo-list {
+.list {
     list-style: none;
     margin-bottom: 20px;
 }
 
-.todo-item {
+.item {
     margin-bottom: 10px;
     width: 100%;
     display: flex;
@@ -47,11 +47,11 @@ body {
     justify-content: space-between;
 }
 
-.todo-item.complete p {
+.item.complete p {
     text-decoration: line-through;
 }
 
-.todo-item img {
+.item img {
     width: 24px;
     height: 24px;
 }
