@@ -1,16 +1,15 @@
-const click = document.getElementById("click");
 const input = document.getElementById("input");
-let list, id;
+const list = document.querySelector(".todo-list");
+
 function addToDo(toDo) {
     var item = `
         <li class="todo-item">
         <p class="text">${toDo}</p>
-        <img src="res/img/close.jpg" alt="close"/>
+        <img class="todo-delete" src="res/img/close.jpg" alt="close"/>
         </li>
         `;
 
-    var position = "afterbegin";
-    list.insertAdjacentHTML(position, item);
+    list.insertAdjacentHTML("afterbegin", item);
 }
 
 document.addEventListener("keyup",function(evt){
@@ -24,15 +23,16 @@ document.addEventListener("keyup",function(evt){
 });
 
 document.addEventListener("click", function(evt){
-const element = evt.target.closest(".todo-item");
-const elementJob = element.attributes.job.value;
-
-if(elementJob == "complete"){
-
-}else if(elementJob == "remove"){
-
-}
+    const element = evt.target.closest(".todo-item");
+    if (element) {
+        element.classList.toggle("complete");
+    }
 });
 
-//document.removeEventListener("click", function(evt){
-//};
+document.addEventListener("click", function(evt){
+  const todoRemoveEl = evt.target.closest(".todo-item");
+  if(todoRemoveEl){
+      const todoEl = evt.target.closest(".todo-delete");
+      todoEl.remove();
+  }
+});
