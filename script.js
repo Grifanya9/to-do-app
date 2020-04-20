@@ -1,18 +1,30 @@
-const input = document.getElementById("input");
-const list = document.querySelector(".list");
+const input = document.querySelector(".todo-input");
+const list = document.querySelector(".todo-list");
+
+const todos = [
+    "todo1",
+    "todo2",
+    "todo3",
+    "todo4",
+];
+
+for (let i = 0; i < todos.length; i++) {
+    const todo = todos[i];
+    addToDo(todo);
+}
 
 function addToDo(toDo) {
-    var item = `
+    const item = `
         <li class="todo-item">
-        <p class="text">${toDo}</p>
-        <img class="todo-delete" src="res/img/close.jpg" alt="close"/>
+            <p class="text">${toDo}</p>
+            <img class="todo-delete" src="res/img/close.jpg" alt="close"/>
         </li>
-        `;
+    `;
 
     list.insertAdjacentHTML("afterbegin", item);
 }
 
-document.addEventListener("keyup",function(evt){
+function onAddNewTodo(evt) {
     if (evt.key === "Enter") {
         let toDo = input.value;
         if (toDo) {
@@ -20,19 +32,25 @@ document.addEventListener("keyup",function(evt){
         }
         input.value = "";
     }
-});
+}
 
-document.addEventListener("click", function(evt){
-    const todoEl = evt.target.closest(".item");
-    if (todoEl) {
-        todoEl.classList.toggle("complete");
+function toggleTodo(evt) {
+    const element = evt.target.closest(".todo-item");
+    if (element) {
+        element.classList.toggle("complete");
     }
-});
+}
 
-document.addEventListener("click", function(evt){
-  const todoRemoveEl = evt.target.closest(".delete");
-  if(todoRemoveEl){
-      const todoEl = evt.target.closest(".item");
-      todoEl.remove();
-  }
-});
+function removeTodo(evt){
+    const todoRemoveEl = evt.target.closest(".todo-delete");
+    if(todoRemoveEl){
+        const todoEl = evt.target.closest(".todo-item");
+        todoEl.remove();
+    }
+}
+
+document.addEventListener("keyup", onAddNewTodo);
+
+document.addEventListener("click", toggleTodo);
+
+document.addEventListener("click", removeTodo);
